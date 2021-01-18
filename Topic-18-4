@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main ()
+{
+    char *locale = setlocale(LC_ALL, "");
+    int n = 0;
+    int answer = 0;
+    printf("Введите N: ");
+    scanf("%d", &n);
+    float a[n];
+    printf("Введите массив: \n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%e", &a[i]);
+    }
+    int num_min = 0;
+    int num_max = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] < a[num_min])
+            num_min = i;
+        if (a[i] > a[num_max])
+            num_max = i;
+    }
+    if (num_min < num_max)
+    {
+        for (int i = num_min + 1; i != num_max; i++)
+        {
+            a[i] = 0;
+        }
+    }
+    if (num_min > num_max)
+    {
+        for (int i = num_max + 1; i != num_min; i++)
+        {
+            a[i] = 0;
+        }
+    }
+
+    printf("Массив: \n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%g ", a[i]);
+    }
+
+    return 0;
+}
